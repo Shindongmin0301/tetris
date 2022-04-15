@@ -177,3 +177,19 @@ document.addEventListener('keydown', e => {
       return dropBlock();
   }
 });
+
+document.addEventListener('click', e => {
+  console.log(e.target.classList[1]);
+  switch (e.target.classList[1]) {
+    case 'left':
+      return moveBlock('left', -1);
+    case 'right':
+      return moveBlock('left', 1);
+    case 'top':
+      return rotateBlock();
+    case 'bottom':
+      return moveBlock('top', 1);
+    case 'drop':
+      return dropBlock();
+  }
+});

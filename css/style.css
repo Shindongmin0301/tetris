@@ -6,6 +6,7 @@ ul {
   padding: 0;
   overflow: hidden;
 }
+
 .wrapper {
   position: relative;
   height: 100vh;
@@ -104,7 +105,7 @@ ul {
   position: absolute;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -124,4 +125,20 @@ ul {
   font-size: 2rem;
   border-radius: 12px;
   letter-spacing: 2px;
+}
+
+.mobile-keys {
+  display: flex;
+  width: 250px;
+  text-align: center;
+  margin: 0 auto;
+}
+.mobile-keys button {
+  background: none;
+  border: none;
+  opacity: 0.5;
+}
+
+.mobile-keys button span {
+  font-size: 3rem;
 }
