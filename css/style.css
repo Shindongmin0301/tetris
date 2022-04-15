@@ -6,7 +6,10 @@ ul {
   padding: 0;
   overflow: hidden;
 }
-
+.wrapper {
+  position: relative;
+  height: 100vh;
+}
 .score {
   text-align: center;
   font-size: 3rem;
@@ -36,4 +39,89 @@ ul {
 
 .tree {
   background: #67c23a;
+}
+.bar {
+  background: #e1bee7;
+}
+.zee {
+  background: #bbdefb;
+}
+.elLeft {
+  background: #ffccbc;
+}
+.elRight {
+  background: #00796b;
+}
+.square {
+  background: #ffa000;
+}
+
+.gameover {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.overwrap {
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 8rem;
+}
+
+.overwrap > h1 {
+  font-size: 3rem;
+  color: #e1bee7;
+}
+.overwrap p {
+  font-size: 1.5rem;
+  margin-bottom: 4rem;
+  color: #ef9a9a;
+}
+.gameover__score {
+  font-size: 1.5rem;
+  color: white;
+}
+.btn__restart {
+  cursor: pointer;
+  padding: 2rem 4rem;
+  font-size: 2rem;
+  border-radius: 12px;
+  letter-spacing: 2px;
+}
+.show {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+.gamestart {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.startwrap {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 5rem;
+}
+.startwrap h1 {
+  font-size: 5rem;
+  color: white;
+}
+.startwrap button {
+  cursor: pointer;
+  padding: 2rem 4rem;
+  font-size: 2rem;
+  border-radius: 12px;
+  letter-spacing: 2px;
 }
