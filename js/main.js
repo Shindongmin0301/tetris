@@ -178,7 +178,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-document.addEventListener('click', e => {
+document.addEventListener('touchstart', e => {
   console.log(e.target.classList[1]);
   switch (e.target.classList[1]) {
     case 'left':
