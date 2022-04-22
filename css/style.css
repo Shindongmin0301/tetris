@@ -1,144 +1,111 @@
-ul {
-  list-style: none;
-}
-* {
+div,
+ul,
+li,
+talbe,
+tbody,
+tr,
+td {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
 }
 
-.wrapper {
+body {
+  background: #eee;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
   position: relative;
-  height: 100vh;
+  width: 600px;
+  margin: 0 auto;
 }
 .score {
   text-align: center;
-  font-size: 3rem;
-  margin-bottom: 2rem;
+  color: #333;
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+.left-side {
+  position: absolute;
+  left: 2rem;
+}
+
+.left-side > p {
+  color: #333;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.next {
+  margin-right: auto;
 }
 
 .playground > ul {
-  border: 1px solid #333;
-  width: 250px;
+  position: relative;
+  border: 1px solid white;
+  width: 300px;
+  margin: 0 auto;
+}
+.next-block > ul {
+  /* border: 1px solid white; */
+  width: 100px;
   margin: 0 auto;
 }
 
-.playground > ul > li {
+.playground > ul > li,
+.next-block > ul > li {
   width: 100%;
   height: 25px;
+  border: 1px solid white;
 }
-
-.playground > ul > li > ul {
+.playground > ul > li > ul,
+.next-block > ul > li > ul {
   display: flex;
-  width: 100%;
 }
-.playground > ul > li > ul > li {
+.playground > ul > li > ul > li,
+.next-block > ul > li > ul > li {
   width: 25px;
   height: 25px;
-  border: 1px solid #bdbdbd;
+  outline: 1px solid white;
+}
+
+.next-block > ul > li {
+  border: none;
+}
+.next-block > ul > li > ul {
+  border: none;
+}
+.next-block > ul > li > ul > li {
+  outline: none;
+}
+.next {
+  color: white;
+  font-size: 1.5rem;
+  /* margin-bottom: 1rem; */
 }
 
 .tree {
-  background: #67c23a;
+  background: #d500f9;
 }
 .bar {
-  background: #e1bee7;
-}
-.zee {
-  background: #bbdefb;
+  background: #651fff;
 }
 .elLeft {
-  background: #ffccbc;
+  background: #00e5ff;
 }
 .elRight {
-  background: #00796b;
+  background: #00e676;
+}
+.zee {
+  background: #ffc400;
 }
 .square {
-  background: #ffa000;
-}
-
-.gameover {
-  display: none;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.overwrap {
-  text-align: center;
-  width: 400px;
-  margin: 0 auto;
-  margin-top: 8rem;
-}
-
-.overwrap > h1 {
-  font-size: 3rem;
-  color: #e1bee7;
-}
-.overwrap p {
-  font-size: 1.5rem;
-  margin-bottom: 4rem;
-  color: #ef9a9a;
-}
-.gameover__score {
-  font-size: 1.5rem;
-  color: white;
-}
-.btn__restart {
-  cursor: pointer;
-  padding: 2rem 4rem;
-  font-size: 2rem;
-  border-radius: 12px;
-  letter-spacing: 2px;
-}
-.show {
-  display: block;
-}
-
-.none {
-  display: none;
-}
-
-.gamestart {
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.startwrap {
-  width: 400px;
-  margin: 0 auto;
-  text-align: center;
-  margin-top: 5rem;
-}
-.startwrap h1 {
-  font-size: 5rem;
-  color: white;
-}
-.startwrap button {
-  cursor: pointer;
-  padding: 2rem 4rem;
-  font-size: 2rem;
-  border-radius: 12px;
-  letter-spacing: 2px;
-}
-
-.mobile-keys {
-  display: flex;
-  width: 250px;
-  text-align: center;
-  margin: 0 auto;
-}
-.mobile-keys button {
-  background: none;
-  border: none;
-  opacity: 0.5;
-}
-
-.mobile-keys button span {
-  font-size: 3rem;
+  background: #ff3d00;
 }

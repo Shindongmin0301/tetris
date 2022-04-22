@@ -5,44 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <title>테트리스</title>
+    <link rel="stylesheet" href="./css/manual.css" />
+    <title>Document</title>
   </head>
   <body>
-    <div class="wrapper">
-      <!-- 점수 -->
-      <div class="score">0</div>
-
-      <!-- 게임 컨테이너 -->
-      <div class="playground">
-        <ul></ul>
-      </div>
-
-      <div class="gameover">
-        <div class="overwrap">
-          <h1>GAME OVER</h1>
-          <p>Total Score: <span class="gameover__score">1</span></p>
-          <button class="btn__restart">Restart!</button>
+    <div class="wrap">
+      <div class="left-side">
+        <p>Next</p>
+        <div class="next-block">
+          <ul></ul>
         </div>
       </div>
-      <div class="gamestart">
-        <div class="startwrap">
-          <h1>Tetris!</h1>
-          <button class="btn__start">Let's Play!</button>
+      <div class="right-side">
+        <div class="score">0</div>
+        <div class="playground">
+          <ul></ul>
         </div>
       </div>
-      <div class="mobile-keys">
-        <div class="rightAndLeft">
-          <button class="right"><span class="material-icons left"> chevron_left </span></button>
-          <button class="left"><span class="material-icons right"> navigate_next </span></button>
-        </div>
-        <button class="top"><span class="material-icons top"> expand_less </span></button>
-        <button class="bottom"><span class="material-icons bottom"> expand_more </span></button>
-        <button class="drop"><span class="material-icons drop"> file_download </span></button>
+    </div>
+    <div class="gamestart">
+      <h1>Tetris</h1>
+      <div class="manual">
+        <h3>게임 방법</h3>
+        <p>
+          테트리스는 4개의 블럭으로 이루어진 테트로미노를 조작해 <br />
+          수평선을 모두 채워 점수를 올리는 것이 목표인 게임입니다.<br />
+          테트로미노가 바닥또는 다른 테트로미노 위에 쌓이며,<br />
+          천장까지 닿는다면 게임은 종료됩니다.<br />
+          한줄의 수평선을 테트로미노로 모두 채우면 해당 줄은 없어집니다.
+        </p>
+        <ul>
+          <li>화살표키, 또는 I,J,K,L 키로 테트로미노를 조작할수있습니다.</li>
+          <li>SpaceBar키를 사용하여 테트로미노를 빠르게 떨어트릴 수 있습니다.</li>
+          <li>화살표 위, 또는 I키를 이용하여 테트로미노를 90도 회전합니다.</li>
+        </ul>
+      </div>
+      <button>게임하기</button>
+    </div>
+    <div class="gameover hide">
+      <div class="gameover__">
+        <h3>Game Over!</h3>
+        <p class="best-score">Best Score: <span>0</span></p>
+        <button>다시하기</button>
       </div>
     </div>
 
     <script src="./js/main.js" type="module"></script>
-    <script src="https://kit.fontawesome.com/21e078a1f7.js" crossorigin="anonymous"></script>
+    <script src="./js/nextBlock.js" type="module"></script>
   </body>
 </html>
