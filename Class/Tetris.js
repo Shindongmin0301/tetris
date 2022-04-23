@@ -1,20 +1,16 @@
 const playground = document.querySelector('.playground > ul');
 import Tetromino from './Tetromino.js';
 import BLOCKS from '../js/blocks.js';
+import { blockStack, randomBlock } from '../js/_main.js';
 
-function generateNewBlock() {
-  const blockArr = Object.keys(BLOCKS);
-  const random = Math.floor(Math.random() * blockArr.length);
-  return new Tetromino(blockArr[random], 0, 0, 5);
-}
-let blockStack = [];
-for (let i = 0; i < 2; i++) {
-  blockStack.push(generateNewBlock().type);
-}
-let tetromino = generateNewBlock();
+let tetromino = new Tetromino('tree', 0, 0, 5);
+let score = 0;
+
 let downInterval;
 
 class Tetris {
+  gameStatus = 'doing';
+
   renderBoard(ROWS = 1) {
     const GAME_COLUMNS = 12;
 
@@ -36,15 +32,24 @@ class Tetris {
     location.forEach(([x, y]) => {
       const target = playground.childNodes[y].childNodes[0].childNodes[x];
       target.classList.add(type, 'moving');
+
+      if (target.classList.contains('stucked', 'moving')) {
+        clearInterval(downInterval);
+        gameStart = false;
+        return showGameover();
+      }
+      // if(target.classList.contains(''))
     });
   }
 
   setNextBlock() {
     clearInterval(downInterval);
-    downInterval = setInterval(() => {
-      this.moveBlock('top', 1);
-    }, 500);
+    // downInterval = setInterval(() => {
+    //   this.moveBlock('top', 1);
+    // }, 500);
     tetromino = new Tetromino(blockStack[0], 0, 0, 5);
+    blockStack.shift();
+    blockStack.push(randomBlock());
     this.renderBlock();
   }
 
@@ -86,14 +91,15 @@ class Tetris {
       });
       if (filled) {
         row.remove();
-        this.renderBlock();
-        // score += 1;
-        // document.querySelector('.score').innerHTML = score;
+        this.renderBoard();
+        score += 1;
+        document.querySelector('.score').innerHTML = score;
       }
     });
   }
 
   dropBlock() {
+    clearInterval(downInterval);
     downInterval = setInterval(() => {
       this.moveBlock('top', 1);
     }, 10);
@@ -118,7 +124,6 @@ class Tetris {
 
   resultArr(temp) {
     const { type, direction, top, left } = temp;
-
     return BLOCKS[type][direction].map(block => {
       const x = block[0] + left;
       const y = block[1] + top;

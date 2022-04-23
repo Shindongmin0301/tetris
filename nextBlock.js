@@ -1,4 +1,4 @@
-import BLOCKS from './blocks.js';
+// import BLOCKS from './blocks.js';
 const nextBlockBox = document.querySelector('.next-block > ul');
 
 export let blockStack = [];

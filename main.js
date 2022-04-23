@@ -1,4 +1,4 @@
-import BLOCKS from './blocks.js';
+// import BLOCKS from './blocks.js';
 import { blockStack, getNextBlock, nextBlockInit, paintNextBlock } from './nextBlock.js';
 
 // DOM
