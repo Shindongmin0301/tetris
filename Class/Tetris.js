@@ -1,16 +1,17 @@
 const playground = document.querySelector('.playground > ul');
 import Tetromino from './Tetromino.js';
 import BLOCKS from '../js/blocks.js';
-import { blockStack, randomBlock } from '../js/_main.js';
+import { state } from '../js/_main.js';
+import NextBlock from '../js/_nextBlock.js';
 
 let tetromino = new Tetromino('tree', 0, 0, 5);
-let score = 0;
 
 let downInterval;
 
 class Tetris {
-  gameStatus = 'doing';
-
+  constructor() {
+    this.tetromino = state.setTetromino();
+  }
   renderBoard(ROWS = 1) {
     const GAME_COLUMNS = 12;
 
@@ -27,30 +28,44 @@ class Tetris {
   }
 
   renderBlock() {
+    if (state.gameStatus === 'stop') return;
     playground.querySelectorAll('.moving').forEach(el => (el.className = ''));
     const { type, location } = tetromino.getBlockCoordination();
-    location.forEach(([x, y]) => {
+    location.some(([x, y]) => {
       const target = playground.childNodes[y].childNodes[0].childNodes[x];
       target.classList.add(type, 'moving');
 
       if (target.classList.contains('stucked', 'moving')) {
         clearInterval(downInterval);
-        gameStart = false;
-        return showGameover();
+        this.showGameover();
+        return true;
       }
-      // if(target.classList.contains(''))
+    });
+  }
+
+  showGameover() {
+    document.querySelector('.best-score > span').innerHTML = state.score;
+    document.querySelector('.gameover').classList.remove('hide');
+    document.querySelector('.gameover button').addEventListener('click', () => {
+      document.querySelector('.gameover').classList.add('hide');
+      document.querySelectorAll('li').forEach(li => li.remove());
+      this.renderBoard(24);
+      this.setNextBlock();
     });
   }
 
   setNextBlock() {
     clearInterval(downInterval);
-    // downInterval = setInterval(() => {
-    //   this.moveBlock('top', 1);
-    // }, 500);
-    tetromino = new Tetromino(blockStack[0], 0, 0, 5);
-    blockStack.shift();
-    blockStack.push(randomBlock());
+    downInterval = setInterval(() => {
+      this.moveBlock('top', 1);
+    }, state.speed);
+    if (state.speed <= 150) state.speed = 150;
+    tetromino = new Tetromino(state.blockStack[0], 0, 0, 5);
+    state.blockStack.shift();
+    state.setNextBlock();
+    console.log(state.blockStack);
     this.renderBlock();
+    NextBlock.renderNextBlock();
   }
 
   moveBlock(move, dist) {
@@ -65,9 +80,7 @@ class Tetris {
       tetromino[move] += dist;
       if (tetromino.direction === 4) tetromino.direction = 0;
       this.renderBlock();
-    } else {
-      if (move === 'top') this.stuckBlock();
-    }
+    } else if (move === 'top') this.stuckBlock();
   }
 
   stuckBlock() {
@@ -92,8 +105,8 @@ class Tetris {
       if (filled) {
         row.remove();
         this.renderBoard();
-        score += 1;
-        document.querySelector('.score').innerHTML = score;
+        state.score += 1;
+        document.querySelector('.score').innerHTML = state.score;
       }
     });
   }
@@ -102,19 +115,23 @@ class Tetris {
     clearInterval(downInterval);
     downInterval = setInterval(() => {
       this.moveBlock('top', 1);
-    }, 10);
+    }, 1);
   }
 
   controllBlock() {
     document.addEventListener('keydown', e => {
       switch (e.code) {
         case 'ArrowUp':
+        case 'KeyI':
           return this.moveBlock('direction', 1);
         case 'ArrowLeft':
+        case 'KeyJ':
           return this.moveBlock('left', -1);
         case 'ArrowRight':
+        case 'KeyL':
           return this.moveBlock('left', +1);
         case 'ArrowDown':
+        case 'KeyK':
           return this.moveBlock('top', +1);
         case 'Space':
           return this.dropBlock();
